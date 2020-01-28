@@ -1,0 +1,17 @@
+{
+    "products": [
+      {
+        "id": 4,
+        "dateIn": "7.30",
+        "dateOut": "16.30",
+        "productName": "Kobsak Srisak",
+        "department": "HR", 
+        "thumbnail": "/images/product/4.jpg"
+      }
+      
+      
+    ]
+   
+  }
+
+
