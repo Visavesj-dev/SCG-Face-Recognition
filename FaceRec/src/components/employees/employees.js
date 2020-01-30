@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import styles from "./employees.module.css";
 
+
 class Employees extends Component {
+
+
+
   render() {
     const { productName, thumbnail } = this.props.product;
 
@@ -17,8 +21,9 @@ class Employees extends Component {
                 className="product-title"
                 style={{ fontSize: 40, marginLeft: 10 }}
               >
-                Mr. {productName}
+                Mr. {productName }
               </a>
+              
               {/* <span className="product-title"
                            >
                           {" "}

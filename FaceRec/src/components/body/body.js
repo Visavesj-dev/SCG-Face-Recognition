@@ -21,6 +21,7 @@ const HEIGHT = 400;
 const inputSize = 160;
 
 class Body extends Component {
+  _isMounted = false;
   constructor(props) {
     super(props);
     this.webcam = React.createRef();
@@ -45,11 +46,21 @@ class Body extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:3000/products").then(res => {
-      {
-        this.setState({ products: res.data });
-      }
-    });
+    this._isMounted = true;
+
+    setInterval(() => {
+      axios.get("http://localhost:3000/products").then(res => {
+        {
+          if (this._isMounted) {
+            this.setState({ products: res.data });
+          }
+        }
+      });
+    },1000);
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   //camera

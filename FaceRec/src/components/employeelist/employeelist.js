@@ -2,15 +2,21 @@ import React, { Component } from "react";
 import Employees from "../employees/employees";
 import { Link } from "react-router-dom";
 
+
 class Employeelist extends Component {
   showEmployee() {
     return (
+     
       this.props.products &&
-      this.props.products.map(product => {
-        return <Employees key={product.id} product={product} />;
+      this.props.products.slice(this.props.products.length - 1).map( (product) => {   
+          return  <Employees key={product.id} product={product}/> ;
       })
+    
     );
   }
+
+ 
+
 
   render() {
     const overflow = {
@@ -43,6 +49,7 @@ class Employeelist extends Component {
           </div>
           <div style={overflow}>
             {/* /.box-header */}
+
             {this.showEmployee()}
             {/* /.box-body */}
           </div>

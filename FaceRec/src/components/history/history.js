@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import styles from "./history.module.css";
+import { Link } from "react-router-dom";
 
 class History extends Component {
   _isMounted = false;
@@ -29,34 +30,35 @@ class History extends Component {
         }
       }
     });
-
   }
 
   componentWillUnmount() {
     this._isMounted = false;
   }
 
- 
   showEmployee = () => {
     return (
       this.state.products &&
       this.state.products.map(product => {
         return (
-          <tr key={product.id} >
+          <tr key={product.id}>
             <td>{product.dateIn}</td>
             <td>{product.dateOut}</td>
-            <td>{product.productName}</td>
+            <td> {product.productName}</td>
             <td>{product.department}</td>
-            <td><img src={product.thumbnail}  className={styles.pics}></img> </td>
+            <td>
+              <img src={product.thumbnail} className={styles.pics}></img>{" "}
+            </td>
           </tr>
         );
       })
     );
   };
 
+
   render() {
     return (
-      <div className="content-wrapper" >
+      <div className="content-wrapper">
         <div className={styles.bg}>
           {/* Content Header (Page header) */}
           <section className="content-header">
@@ -77,13 +79,12 @@ class History extends Component {
           <section className="content">
             <div className="row">
               <div className="col-xs-12">
-                <div className="box" style={{overflowX: 'scroll'}}>
+                <div className="box" style={{ overflowX: "scroll" }}>
                   {/* /.box-header */}
-                  <div className="box-body" >
+                  <div className="box-body">
                     <table
                       id="example2"
                       className="table table-bordered table-hover"
-                      
                     >
                       <thead>
                         <tr>
@@ -94,7 +95,7 @@ class History extends Component {
                           <th>Picture</th>
                         </tr>
                       </thead>
-                      <tbody >{this.showEmployee()}</tbody>
+                      <tbody>{this.showEmployee()}</tbody>
                     </table>
                   </div>
                   {/* /.box-body */}
