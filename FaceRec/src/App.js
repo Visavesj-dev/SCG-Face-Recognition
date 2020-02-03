@@ -5,6 +5,8 @@ import Login from './components/login/login';
 import Body from './components/body/body';
 import History from './components/history/history'
 import Employee from './components/employee/employee';
+import Footer from './components/footer/footer';
+import Profile from './components/profile';
 
 //React-router-dom
 import {
@@ -13,7 +15,8 @@ import {
   Redirect,
   Switch
 } from "react-router-dom";
-import Footer from './components/footer/footer';
+
+
 
 
 
@@ -34,7 +37,9 @@ export default class App extends Component {
   
   render() {
     return (
+      
       <Router>
+      
       <div>
       <Header /> 
       
@@ -45,6 +50,8 @@ export default class App extends Component {
       <Route exact path='/home' component={Body} />
       <Route exact path='/history' component={History} />
       <Route exact path='/employee' component={Employee} />
+      <Route exact path="/history/profile/:id" component={Profile} />
+
 
       {/* Redirect to login */}
       {/* <Route exact={true} path="/" component={this.redirectToLogin} />
@@ -57,7 +64,9 @@ export default class App extends Component {
        
         
       </div>
+  
       </Router>
+      
     )
   }
 }

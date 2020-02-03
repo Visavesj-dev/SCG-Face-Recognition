@@ -216,6 +216,7 @@ class Body extends Component {
                           <h1 className="text-muted mt-4 text-right">
                             {this.state.dates.toLocaleTimeString()}
                           </h1>
+                          {/* <img src="http://192.168.137.1:8000/video_feed" style={{borderRadius: 30}}></img> */}
                           {/* carmera */}
                           {/* <div
         className="Camera"
@@ -251,7 +252,7 @@ class Body extends Component {
       </div> */}
                           {/*  */}
                           {/* Map will be created here */}
-                          <div id="world-map-markers" style={{ height: 250 }} />
+                          <div id="world-map-markers" style={{ height: 100 }} />
                         </div>
                       </div>
                     </div>

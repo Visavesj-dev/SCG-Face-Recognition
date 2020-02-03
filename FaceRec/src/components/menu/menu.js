@@ -9,7 +9,7 @@ class Menu extends Component {
       
       <aside className="main-sidebar  " style={{height: 'auto'  , position: "fixed"}} >
         <ul className="sidebar-menu" data-widget="tree">
-        <li className="header">MAIN NAVIGATION</li>
+        <li className="header" >MAIN NAVIGATION</li>
         {/* sidebar items */}
         <li className="active">
           <Link to="/home">
