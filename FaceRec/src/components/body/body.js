@@ -22,18 +22,18 @@ class Body extends Component {
   }
   componentDidMount() {
     //Change here
-    
+
     this._isMounted = true;
 
     this.lookupInterval = setInterval(() => {
       // Internal Database
-      axios.get("http://localhost:3000/products").then(res => {
-        {
-          if (this._isMounted) {
-            this.setState({ employees: res.data });
-          }
-        }
-      });
+      // axios.get("http://localhost:3000/products").then(res => {
+      //   {
+      //     if (this._isMounted) {
+      //       this.setState({ employees: res.data });
+      //     }
+      //   }
+      // });
 
       // External Database
       // axios.get("http://192.168.137.1:8000/history").then(res => {
@@ -44,14 +44,13 @@ class Body extends Component {
       //   }
       // });
 
-      // axios.get("http://192.168.137.1:3030").then(res => {
-      //   {
-      //     if (this._isMounted) {
-      //       this.setState({ employees: res.data });
-      //       console.log(res.data);
-      //     }
-      //   }
-      // });
+      axios.get("http://192.168.137.1:3030").then(res => {
+        {
+          if (this._isMounted) {
+            this.setState({ employees: res.data });
+          }
+        }
+      });
     }, 500);
   }
 

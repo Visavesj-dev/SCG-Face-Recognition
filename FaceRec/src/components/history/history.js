@@ -18,9 +18,9 @@ class History extends Component {
     //Change here
     this._isMounted = true;
     // External Database
-    // await axios.get("http://192.168.137.1:3030").then(res => {
+    await axios.get("http://192.168.137.1:3030").then(res => {
       // axios.get("http://192.168.137.1:8000/history").then(res => {
-      await axios.get("http://localhost:3000/products").then(res => {
+      // await axios.get("http://localhost:3000/products").then(res => {
       if (this._isMounted) {
         const script = document.createElement("script");
 
@@ -41,7 +41,8 @@ class History extends Component {
   }
 
   viewProfile(history) {
-    this.props.history.push("history/profile/" + history.id);
+    // this.props.history.push("history/profile/" + history.id);
+    this.props.history.push("history/profile/" + history.ID);
   }
 
   showEmployee = () => {
@@ -49,16 +50,16 @@ class History extends Component {
       return (
         //Change here
 
-        // this.state.history.recordsets &&
-        // this.state.history.recordsets.map(historys => {
-        //   return historys.map(historys => {
+        this.state.history.recordsets &&
+        this.state.history.recordsets.map(historys => {
+          return historys.map(historys => {
         
         //test
-            this.state.history &&
-        this.state.history.map(historys => {
+        //     this.state.history &&
+        // this.state.history.map(historys => {
         //test
             return (
-              <tr key={historys.id} onClick={() => this.viewProfile(historys)}>
+              <tr key={historys.ID} onClick={() => this.viewProfile(historys)}>
                 <td>
                   {historys.first_name} {historys.last_name}
                 </td>
@@ -76,6 +77,8 @@ class History extends Component {
             );
           
         })
+        
+      })
       );
     }
   };

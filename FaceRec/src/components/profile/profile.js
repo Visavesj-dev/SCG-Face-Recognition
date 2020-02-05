@@ -13,11 +13,12 @@ class Profile extends Component {
 
   componentDidMount() {
     //Change here
+    
     axios
-      // .get("http://192.168.137.1:3030" + this.props.match.params.id)
-      .get("http://localhost:3000/products/" + this.props.match.params.id)
+      .get("http://192.168.137.1:3030"+ this.props.match.params.id)
+      // .get("http://localhost:3000/products/" + this.props.match.params.id)
       // .get("http://192.168.137.1:8000/history" + this.props.match.params.id)
-      .then(res => this.setState({ profile: res.data }));
+      .then(res => console.log(res.data));
   }
 
   render() {

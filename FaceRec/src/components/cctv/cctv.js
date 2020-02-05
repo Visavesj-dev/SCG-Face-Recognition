@@ -18,14 +18,18 @@ class Cctv extends Component {
 
   componentDidMount() {
     this._isMounted = true;
+    
 
     // Internal Database
-    axios.get("http://localhost:3000/products").then(res => {
+    // axios.get("http://localhost:3000/products").then(res => {
+      axios.get("http://192.168.137.1:3030").then(res => {
       {
         if (this._isMounted) {
           this.setState({ employees: res.data });
+          
         }
       }
+      
     });
 
     // External Database
