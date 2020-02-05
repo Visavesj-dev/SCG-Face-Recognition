@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import styles from "./history.module.css";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class History extends Component {
   _isMounted = false;
@@ -10,13 +10,17 @@ class History extends Component {
     super(props);
 
     this.state = {
-      products: []
+      history: null
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    //Change here
     this._isMounted = true;
-    axios.get("http://localhost:3000/products").then(res => {
+    // External Database
+    // await axios.get("http://192.168.137.1:3030").then(res => {
+      // axios.get("http://192.168.137.1:8000/history").then(res => {
+      await axios.get("http://localhost:3000/products").then(res => {
       if (this._isMounted) {
         const script = document.createElement("script");
 
@@ -26,7 +30,7 @@ class History extends Component {
         document.body.appendChild(script);
         console.log(this._isMounted);
         {
-          this.setState({ products: res.data });
+          this.setState({ history: res.data });
         }
       }
     });
@@ -36,27 +40,44 @@ class History extends Component {
     this._isMounted = false;
   }
 
-  editProduct(product) {
-    this.props.history.push("history/profile/" + product.id);
+  viewProfile(history) {
+    this.props.history.push("history/profile/" + history.id);
   }
 
   showEmployee = () => {
-    return (
-      this.state.products &&
-      this.state.products.map(product => {
-        return (
-          <tr key={product.id} onClick={() => this.editProduct(product)}>
-            <td>{product.dateIn}</td>
-            <td>{product.dateOut}</td>
-            <td> {product.productName}</td>
-            <td>{product.department}</td>
-            <td>
-              <img src={product.thumbnail} className={styles.pics}></img>
-            </td>
-          </tr>
-        );
-      })
-    );
+    if (this.state.history != null) { //ค่าที่เข้ามาห้ามเป็น null 
+      return (
+        //Change here
+
+        // this.state.history.recordsets &&
+        // this.state.history.recordsets.map(historys => {
+        //   return historys.map(historys => {
+        
+        //test
+            this.state.history &&
+        this.state.history.map(historys => {
+        //test
+            return (
+              <tr key={historys.id} onClick={() => this.viewProfile(historys)}>
+                <td>
+                  {historys.first_name} {historys.last_name}
+                </td>
+                <td>
+                  {historys.first_name} {historys.last_name}
+                </td>
+                <td>
+                  {historys.first_name} {historys.last_name}
+                </td>
+                <td>{historys.department}</td>
+                <td>
+                  <img src={historys.picture} className={styles.pics}></img>
+                </td>
+              </tr>
+            );
+          
+        })
+      );
+    }
   };
 
   render() {

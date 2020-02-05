@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import styles from "./profile.module.css";
 import axios from "axios";
-import { ComposableTask } from "face-api.js";
 
 class Profile extends Component {
   constructor(props) {
@@ -12,53 +12,82 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    if (this.props.match.params.id) {
-      axios
-        .get("http://localhost:3000/products/" + this.props.match.params.id)
-        .then(res => this.setState({ profile: res.data }));
-    }
+    //Change here
+    axios
+      // .get("http://192.168.137.1:3030" + this.props.match.params.id)
+      .get("http://localhost:3000/products/" + this.props.match.params.id)
+      // .get("http://192.168.137.1:8000/history" + this.props.match.params.id)
+      .then(res => this.setState({ profile: res.data }));
   }
 
   render() {
-    const { productName, department, thumbnail } = this.state.profile;
+    //Change here
+    const { first_name, department, imgs, last_name } = this.state.profile;
 
     return (
       <div className="content-wrapper">
         {/* Content Header (Page header) */}
         <section className="content-header">
           <h1>Profile</h1>
-          <ol className="breadcrumb">
-            <li>
-              <a href="#">
-                <i className="fa fa-dashboard" /> Home
-              </a>
-            </li>
-            <li>
-              <a href="#">Examples</a>
-            </li>
-            <li className="active">User profile</li>
-          </ol>
         </section>
         {/* Main content */}
-
         <section className="content">
           <div className="row">
-            <div className="col-md-12 ">
+            <div className="col-md-6 ">
               {/* Profile Image */}
-              <div className="box box-primary">
-                <div className="box-body box-profile">
-                  <img
-                    className="profile-user-img img-responsive img-circle"
-                    src={thumbnail}
-                    style={{ height: 175, width: 150 }}
-                  />
-                  <h2 className=" text-center">{productName}</h2>
-                  <h3 className="text-muted text-center">{department}</h3>
+              <div className="box box-primary" style={{ height: 685 }}>
+                <div className="box-header with-border">
+                  <div className="img-responsive pad">
+                    <img src={imgs} alt="Photo" className={styles.pics} />
+                  </div>
+                  <h1
+                    className="product-title text-center"
+                    style={{ fontSize: 40, marginLeft: 5 }}
+                  >
+                    {first_name} {last_name}
+                  </h1>
+                </div>
+                <div className="box-body">
+                  <h4>
+                    <i className="fa fa-building margin-r-5" />
+                    Department
+                  </h4>
+                  <h3 className="text-black">
+                    <blockquote>
+                      <strong>{department}</strong>
+                    </blockquote>
+                  </h3>
+                  <hr />
+
+                  <h4>
+                    <i className="fa fa-sign-in margin-r-5" /> Time In
+                  </h4>
+
+                  <h3 className="text-black">
+                    <blockquote>
+                      <strong>{department}</strong>
+                    </blockquote>
+                  </h3>
+                  <hr />
+
+                  <h4>
+                    <i className="fa fa-sign-out margin-r-5" /> Time Out
+                  </h4>
+
+                  <h3 className="text-black">
+                    <blockquote>
+                      <strong>{department}</strong>
+                    </blockquote>
+                  </h3>
                 </div>
                 {/* /.box-body */}
               </div>
-              {/* /.box */}
-              {/* About Me Box */}
+            </div>
+            {/* /.col */}
+
+            {/* /.box */}
+            {/* About Me Box */}
+            <div className="col-md-6">
               <div className="box box-primary">
                 <div className="box-header with-border">
                   <h3 className="box-title">About Me</h3>
@@ -66,7 +95,7 @@ class Profile extends Component {
                 {/* /.box-header */}
                 <div className="box-body">
                   <strong>
-                    <i className="fa fa-book margin-r-5" /> Education
+                    <i className="fa fa-file-text-o margin-r-5" /> สังกัดงาน
                   </strong>
                   <p className="text-muted">
                     B.S. in Computer Science from the University of Tennessee at
@@ -74,12 +103,12 @@ class Profile extends Component {
                   </p>
                   <hr />
                   <strong>
-                    <i className="fa fa-map-marker margin-r-5" /> Location
+                    <i className="fa fa-file-text-o margin-r-5" /> อายุ
                   </strong>
                   <p className="text-muted">Malibu, California</p>
                   <hr />
                   <strong>
-                    <i className="fa fa-pencil margin-r-5" /> Skills
+                    <i className="fa fa-file-text-o margin-r-5" /> อายุงาน
                   </strong>
                   <p>
                     <span className="label label-danger">UI Design</span>
@@ -90,22 +119,51 @@ class Profile extends Component {
                   </p>
                   <hr />
                   <strong>
-                    <i className="fa fa-file-text-o margin-r-5" /> Notes
+                    <i className="fa fa-file-text-o margin-r-5" /> เบอร์ติดต่อ
                   </strong>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Etiam fermentum enim neque.
+                    Lorem ipsขconsectetur adipiscing elit. Etiam fermentum enim
+                    neque.
+                  </p>
+                  <hr />
+                  <strong>
+                    <i className="fa fa-file-text-o margin-r-5" /> หัวหน้างาน
+                  </strong>
+                  <p>
+                    Lorem ipsขconsectetur adipiscing elit. Etiam fermentum enim
+                    neque.
+                  </p>
+                  <hr />
+                  <strong>
+                    <i className="fa fa-file-text-o margin-r-5" /> ประวัติการอบรม
+                  </strong>
+                  <p>
+                    Lorem ipsขconsectetur adipiscing elit. Etiam fermentum enim
+                    neque.
+                  </p>
+                  <hr />
+                  <strong>
+                    <i className="fa fa-file-text-o margin-r-5" /> ​Sub-contractor
+                  </strong>
+                  <p>
+                    Lorem ipsขconsectetur adipiscing elit. Etiam fermentum enim
+                    neque.
+                  </p>
+                  <hr />
+                  <strong>
+                    <i className="fa fa-file-text-o margin-r-5" /> สถานที่ทำงาน
+                  </strong>
+                  <p>
+                    Lorem ipsขconsectetur adipiscing elit. Etiam fermentum enim
+                    neque.
                   </p>
                 </div>
                 {/* /.box-body */}
               </div>
-              {/* /.box */}
             </div>
-            {/* /.col */}
           </div>
           {/* /.row */}
         </section>
-        {/* /.content */}
       </div>
     );
   }

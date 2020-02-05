@@ -4,7 +4,7 @@ import Menu from './components/menu/menu'
 import Login from './components/login/login';
 import Body from './components/body/body';
 import History from './components/history/history'
-import Employee from './components/employee/employee';
+import Cctv from './components/cctv/cctv';
 import Footer from './components/footer/footer';
 import Profile from './components/profile';
 
@@ -49,7 +49,7 @@ export default class App extends Component {
       <Route exact path='/login' component={Login} />
       <Route exact path='/home' component={Body} />
       <Route exact path='/history' component={History} />
-      <Route exact path='/employee' component={Employee} />
+      <Route exact path='/cctv' component={Cctv} />
       <Route exact path="/history/profile/:id" component={Profile} />
 
 

@@ -1,37 +1,38 @@
 {
   "products": [
     {
-      "id": 4,
-      "dateIn": "7.30",
-      "dateOut": "16.30",
-      "productName": "Kobsak Srisak",
+      "id": 5,
+      "time": "7.30",
+      "first_name": "วิศเวศ",
+      "last_name": "ไตรพรกนกรัตน์",
       "department": "HR",
-      "thumbnail": "/images/product/4.jpg"
+      "imgs": "/images/product/5.jpg"
     },
     {
-      "id": 5,
-      "dateIn": "7.30",
-      "dateOut": "16.30",
-      "productName": "5",
+      "id": 4,
+      "time": "7.30",
+      "first_name": "KOBSAK",
+      "last_name": "Srisak",
       "department": "HR",
-      "thumbnail": "/images/product/5.jpg"
+      "imgs": "/images/product/4.jpg"
     },
     {
       "id": 6,
-      "dateIn": "7.30",
-      "dateOut": "16.30",
-      "productName": "6",
+      "time": "7.30",
+      "first_name": "ธงไทย",
+      "last_name": "ไทยทานิคซิคโอเวอร์",
       "department": "HR",
-      "thumbnail": "/images/product/6.jpg"
+      "imgs": "/images/product/6.jpg"
     },
     {
       "id": 7,
-      "dateIn": "7.30",
-      "dateOut": "16.30",
-      "productName": "7",
+      "time": "7.30",
+      "first_name": "จารุพงษ์",
+      "last_name": "จันทร์มูล",
       "department": "HR",
-      "thumbnail": "/images/product/7.jpg"
+      "imgs": "/images/product/7.jpg"
     }
+    
     
   ]
 }
