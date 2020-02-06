@@ -5,7 +5,6 @@ import Login from './components/login/login';
 import Body from './components/body/body';
 import History from './components/history/history'
 import Cctv from './components/cctv/cctv';
-import Footer from './components/footer/footer';
 import Profile from './components/profile';
 
 //React-router-dom

@@ -29,16 +29,6 @@ class Employeelist extends Component {
         //   })
       );
     }
-    // else if (this.props.employeeCCTV != null) {
-    //   return (
-    //     this.props.employeeCCTV && this.props.employeeCCTV.map(employee => {
-
-    //       return <Employees key={employee.id} employeeCCTV={employee} />;
-
-    //     })
-
-    //   );
-    // }
   }
 
   test() {
