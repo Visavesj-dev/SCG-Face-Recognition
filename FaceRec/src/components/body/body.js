@@ -13,7 +13,7 @@ class Body extends Component {
     this.state = {
       date: new Date(),
       dates: new Date(),
-      employees: null
+      employeess: null
     };
 
     setInterval(() => {
