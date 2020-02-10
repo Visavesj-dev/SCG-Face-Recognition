@@ -43,7 +43,7 @@ class Employeelist extends Component {
       return (
         this.props.employeeCCTV.recordsets &&
         this.props.employeeCCTV.recordsets.map(employee => {
-          return employee.reverse().map(employees => { //Show the last data
+          return employee.reverse().slice(1,10).map(employees => { //Show the last data
             return <Employees key={employees.ID} employeeCCTV={employees} />;
           });
         })
@@ -83,8 +83,13 @@ class Employeelist extends Component {
               <div style={{ minHeight: "100%" }} style={overflow}>
                 {this.test()}
               </div>
+
               {/* /.box-footer */}
+              <div class="box-footer text-center">
+              <Link to="/history">View All Products</Link>
             </div>
+            </div>
+            
           </div>
         )}
       </div>
