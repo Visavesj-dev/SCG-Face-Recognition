@@ -44,7 +44,7 @@ class Body extends Component {
       //   }
       // });
 
-      axios.get("http://192.168.137.1:3030").then(res => {
+      axios.get("http://localhost:3030").then(res => {
         {
           if (this._isMounted) {
             this.setState({ employees: res.data });

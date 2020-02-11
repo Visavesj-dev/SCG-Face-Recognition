@@ -18,7 +18,7 @@ class History extends Component {
     //Change here
     this._isMounted = true;
     // External Database
-    await axios.get("http://192.168.137.1:3030").then(res => {
+    await axios.get("http://localhost:3030").then(res => {
       // axios.get("http://192.168.137.1:8000/history").then(res => {
       // await axios.get("http://localhost:3000/products").then(res => {
       if (this._isMounted) {

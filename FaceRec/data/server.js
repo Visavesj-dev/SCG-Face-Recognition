@@ -1,5 +1,8 @@
 var express = require('express');
 var app = express();
+var cors = require('cors')
+
+app.use(cors())
 
 app.get('/', function (req, res) {
    
@@ -7,11 +10,11 @@ app.get('/', function (req, res) {
 
     // config for your database
     var config = {
-        user: 'test',
-        password: 'test',
-        server: 'http://192.168.137.1', 
-        database: 'employee_data' 
-            
+        user: "cmu59",
+        password: "Abc123456",
+        server: "facereccmu.database.windows.net", 
+        database: "facedatabase",
+        encrypt: true
     };
 
     // connect to your database
@@ -23,7 +26,7 @@ app.get('/', function (req, res) {
         var request = new sql.Request();
            
         // query to the database and get the records
-        request.query('select * from person', function (err, recordset) {
+        request.query('select * from People', function (err, recordset) {
             
             if (err) console.log(err)
 
