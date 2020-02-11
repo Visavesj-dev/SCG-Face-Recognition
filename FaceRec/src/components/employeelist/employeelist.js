@@ -4,10 +4,6 @@ import { Link } from "react-router-dom";
 
 class Employeelist extends Component {
 
-  componentDidMount() {
-    window.scrollTo(0, 0);
-}
-
   showEmployee() {
     //Change here
 
@@ -16,7 +12,7 @@ class Employeelist extends Component {
         this.props.employees.recordsets &&
         this.props.employees.recordsets.map(employee => {
           return employee.slice(employee.length - 1).map(employees => { //Show the last data
-            return <Employees key={employees.ID} employee={employees} />;
+            return <Employees key={employees.id} employee={employees} />;
           });
         })
 
@@ -31,7 +27,7 @@ class Employeelist extends Component {
     }
   }
 
-  test() {
+  showEmployeeCCTV() {
     if (this.props.employeeCCTV != null) {
       // return (
       //   this.props.employeeCCTV &&
@@ -44,7 +40,7 @@ class Employeelist extends Component {
         this.props.employeeCCTV.recordsets &&
         this.props.employeeCCTV.recordsets.map(employee => {
           return employee.reverse().slice(1,10).map(employees => { //Show the last data
-            return <Employees key={employees.ID} employeeCCTV={employees} />;
+            return <Employees key={employees.id} employeeCCTV={employees} />;
           });
         })
 
@@ -81,11 +77,11 @@ class Employeelist extends Component {
                 <h3 className="box-title">Recently Employee</h3>
               </div>
               <div style={{ minHeight: "100%" }} style={overflow}>
-                {this.test()}
+                {this.showEmployeeCCTV()}
               </div>
 
               {/* /.box-footer */}
-              <div class="box-footer text-center">
+              <div className="box-footer text-center">
               <Link to="/history">View All Products</Link>
             </div>
             </div>
