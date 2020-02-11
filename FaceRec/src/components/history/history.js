@@ -42,7 +42,7 @@ class History extends Component {
 
   viewProfile(history) {
     // this.props.history.push("history/profile/" + history.id);
-    this.props.history.push("history/profile/" + history.ID);
+    this.props.history.push("history/profile/" + history.id);
   }
 
   showEmployee = () => {
@@ -52,15 +52,15 @@ class History extends Component {
 
         this.state.history.recordsets &&
         this.state.history.recordsets.map(historys => {
-          return historys.map(historys => {
+          return historys.map((historys,index) => {
         
         //test
         //     this.state.history &&
         // this.state.history.map(historys => {
         //test
             return (
-              <tr key={historys.ID} onClick={() => this.viewProfile(historys)}>
-                <td>
+              <tr key={index} onClick={() => this.viewProfile(historys)}>
+                 <td>
                   {historys.first_name} {historys.last_name}
                 </td>
                 <td>
@@ -72,7 +72,8 @@ class History extends Component {
                 <td>{historys.department}</td>
                 <td>
                   <img src={historys.picture} className={styles.pics}></img>
-                </td>
+                </td> 
+             
               </tr>
             );
           
