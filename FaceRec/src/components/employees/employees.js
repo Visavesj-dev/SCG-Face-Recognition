@@ -73,7 +73,7 @@ class Employees extends Component {
               <ul className="products-list product-list-in-box">
                 <li className="item ">
                   <div className="row">
-                    <div className="prodct-img col-xs-5 col-md-5 ">
+                    <div className="prodct-img col-xs-5 col-md-4 ">
                       <img
                         src={this.props.employeeCCTV.imgs}
                         alt="Photo"
