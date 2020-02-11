@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import styles from "./profile.module.css";
-import axios from "axios";
+
+//redux
+import { connect } from "react-redux";
+import { EmployeeFetch } from "../../actions";
 
 class Profile extends Component {
   _isMounted = false;
   constructor(props) {
     super(props);
-
-    this.state = {
-      profile: null
-    };
   }
 
   componentDidMount() {
@@ -17,11 +16,7 @@ class Profile extends Component {
     this._isMounted = true;
 
     if (this._isMounted) {
-      axios
-        .get("http://localhost:3030/" + this.props.match.params.id)
-        // .get("http://localhost:3000/products/" + this.props.match.params.id)
-        // .get("http://192.168.137.1:8000/history" + this.props.match.params.id)
-        .then(res => this.setState({ profile: res.data }));
+      this.props.EmployeeFetch(this.props.match.params.id);
     }
   }
 
@@ -30,10 +25,10 @@ class Profile extends Component {
   }
 
   show() {
-    if (this.state.profile != null) {
+    if (this.props.employees != null) {
       return (
-        this.state.profile.recordsets &&
-        this.state.profile.recordsets.map(data => {
+        this.props.employees.recordsets &&
+        this.props.employees.recordsets.map(data => {
           return data.map((data, index) => {
             return (
               <section className="content" key={index}>
@@ -196,4 +191,8 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+function mapStateToProps(state) {
+  return { employees: state.employees };
+}
+
+export default connect(mapStateToProps, { EmployeeFetch })(Profile);

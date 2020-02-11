@@ -1,8 +1,12 @@
 import React, { Component } from "react";
-import axios from "axios";
 import styles from "./body.module.css";
 
+//import component
 import Employeelist from "../employeelist/employeelist";
+
+//redux
+import { connect } from "react-redux";
+import { EmployeesFetch } from "../../actions";
 
 // Import face profile
 class Body extends Component {
@@ -11,46 +15,17 @@ class Body extends Component {
     super(props);
 
     this.state = {
-      date: new Date(),
-      dates: new Date(),
-      employees: null
+      dates: new Date()
     };
-
-    setInterval(() => {
-      this.setState({ dates: new Date() });
-    }, 1000);
   }
+
   componentDidMount() {
-    //Change here
-
     this._isMounted = true;
-
     this.lookupInterval = setInterval(() => {
-      // Internal Database
-      // axios.get("http://localhost:3000/products").then(res => {
-      //   {
-      //     if (this._isMounted) {
-      //       this.setState({ employees: res.data });
-      //     }
-      //   }
-      // });
-
-      // External Database
-      // axios.get("http://192.168.137.1:8000/history").then(res => {
-      //   {
-      //     if (this._isMounted) {
-      //       this.setState({ employees: res.data });
-      //     }
-      //   }
-      // });
-
-      axios.get("http://localhost:3030").then(res => {
-        {
-          if (this._isMounted) {
-            this.setState({ employees: res.data });
-          }
-        }
-      });
+      if (this._isMounted) {
+        this.props.EmployeesFetch();
+        this.setState({ dates: new Date() });
+      }
     }, 500);
   }
 
@@ -58,6 +33,7 @@ class Body extends Component {
     this._isMounted = false;
     clearInterval(this.lookupInterval);
   }
+
   render() {
     return (
       <div className="content-wrapper">
@@ -94,7 +70,7 @@ class Body extends Component {
                 </div>
               </div>
               {/* Employeelist */}
-              <Employeelist employees={this.state.employees} />
+              <Employeelist employees={this.props.employees} />
             </div>
           </section>
         </div>
@@ -102,5 +78,8 @@ class Body extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return { employees: state.employees };
+}
 
-export default Body;
+export default connect(mapStateToProps, { EmployeesFetch })(Body);

@@ -1,66 +1,55 @@
 import React, { Component } from "react";
-import axios from "axios";
 import styles from "./history.module.css";
+
 import { withRouter } from "react-router-dom";
+
+//redux
+import { connect } from "react-redux";
+import { EmployeesFetch } from "../../actions";
 
 class History extends Component {
   _isMounted = false;
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      history: null
-    };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     //Change here
     this._isMounted = true;
-    // External Database
-    await axios.get("http://localhost:3030").then(res => {
-      // axios.get("http://192.168.137.1:8000/history").then(res => {
-      // await axios.get("http://localhost:3000/products").then(res => {
-      if (this._isMounted) {
-        const script = document.createElement("script");
 
-        script.src = "js/content.js";
-        script.async = true;
-
-        document.body.appendChild(script);
-        console.log(this._isMounted);
-        {
-          this.setState({ history: res.data });
-        }
-      }
-    });
+    if (this._isMounted) {
+      this.props.EmployeesFetch();
+    }
   }
 
   componentWillUnmount() {
     this._isMounted = false;
+
+    if (this._isMounted) {
+      const script = document.createElement("script");
+
+      script.src = "js/content.js";
+      script.async = true;
+
+      document.body.appendChild(script);
+    }
   }
 
   viewProfile(history) {
-    // this.props.history.push("history/profile/" + history.id);
     this.props.history.push("history/profile/" + history.id);
   }
 
   showEmployee = () => {
-    if (this.state.history != null) { //ค่าที่เข้ามาห้ามเป็น null 
+    if (this.props.employees != null) {
+      //ค่าที่เข้ามาห้ามเป็น null
       return (
-        //Change here
-
-        this.state.history.recordsets &&
-        this.state.history.recordsets.map(historys => {
-          return historys.map((historys,index) => {
-        
-        //test
-        //     this.state.history &&
-        // this.state.history.map(historys => {
-        //test
+        this.props.employees.recordsets &&
+        this.props.employees.recordsets.map(historys => {
+          return historys.map((historys, index) => {
             return (
               <tr key={index} onClick={() => this.viewProfile(historys)}>
-                 <td>
+                <td>
                   {historys.first_name} {historys.last_name}
                 </td>
                 <td>
@@ -72,14 +61,11 @@ class History extends Component {
                 <td>{historys.department}</td>
                 <td>
                   <img src={historys.picture} className={styles.pics}></img>
-                </td> 
-             
+                </td>
               </tr>
             );
-          
+          });
         })
-        
-      })
       );
     }
   };
@@ -140,4 +126,10 @@ class History extends Component {
   }
 }
 
-export default withRouter(History);
+function mapStateToProps(state) {
+  return { employees: state.employees };
+}
+
+export default connect(mapStateToProps, { EmployeesFetch })(
+  withRouter(History)
+);
