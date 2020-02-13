@@ -18,7 +18,11 @@ class History extends Component {
     //Change here
     this._isMounted = true;
 
+    
+
     if (this._isMounted) {
+      
+      
       this.props.EmployeesFetch();
     }
   }
@@ -26,19 +30,30 @@ class History extends Component {
   componentWillUnmount() {
     this._isMounted = false;
 
-    if (this._isMounted) {
-      const script = document.createElement("script");
-
-      script.src = "js/content.js";
-      script.async = true;
-
-      document.body.appendChild(script);
-    }
+   
   }
 
   viewProfile(history) {
-    this.props.history.push("history/profile/" + history.id);
+    this.props.history.push("history/profile/" + history.id[0]);
   }
+
+
+  ConvertDAte = times => {
+    if (times != null) {
+      var createdDate = times;
+      var convert = createdDate.replace(
+        /(\d{4}-\d{2}-\d{2})+(\D)+(\d{2}:\d{2})+(:\d{2}.\d{3}\D)/,
+        "$1  $3"
+      );
+
+      convert = new Date(convert);
+      const date = convert.toLocaleDateString();
+      const time = convert.toLocaleTimeString().replace(/(.*)\D\d+/, "$1");
+      return date + " " + time;
+    } else {
+      return null;
+    }
+  };
 
   showEmployee = () => {
     if (this.props.employees != null) {
@@ -50,17 +65,17 @@ class History extends Component {
             return (
               <tr key={index} onClick={() => this.viewProfile(historys)}>
                 <td>
-                  {historys.first_name} {historys.last_name}
+                  {this.ConvertDAte(historys.time_in)} 
                 </td>
                 <td>
-                  {historys.first_name} {historys.last_name}
+                  {this.ConvertDAte(historys.time_out)}
                 </td>
                 <td>
                   {historys.first_name} {historys.last_name}
                 </td>
                 <td>{historys.department}</td>
                 <td>
-                  <img src={historys.picture} className={styles.pics}></img>
+                  <img src={historys.img} className={styles.pics}></img>
                 </td>
               </tr>
             );
@@ -126,10 +141,16 @@ class History extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return { employees: state.employees };
-}
+// function mapStateToProps(state) {
+//   return { employees: state.employees };
+// }
+
+//Destructuring form
+const mapStateToProps = ({employees}) => ({ employees })
+
+
 
 export default connect(mapStateToProps, { EmployeesFetch })(
   withRouter(History)
 );
+

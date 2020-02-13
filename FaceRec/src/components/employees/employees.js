@@ -3,10 +3,26 @@ import styles from "./employees.module.css";
 import { withRouter } from "react-router-dom";
 
 class Employees extends Component {
-
   viewProfile(employ) {
-    this.props.history.push("history/profile/" + employ.id);
+    this.props.history.push("history/profile/" + employ.id[0]);
   }
+
+  ConvertDAte = times => {
+    if (times != null) {
+      var createdDate = times;
+      var convert = createdDate.replace(
+        /(\d{4}-\d{2}-\d{2})+(\D)+(\d{2}:\d{2})+(:\d{2}.\d{3}\D)/,
+        "$1  $3"
+      );
+
+      convert = new Date(convert);
+      const date = convert.toLocaleDateString();
+      const time = convert.toLocaleTimeString().replace(/(.*)\D\d+/, "$1");
+      return date + " " + time;
+    } else {
+      return null;
+    }
+  };
 
   render() {
     return (
@@ -16,7 +32,7 @@ class Employees extends Component {
             <div className="box-header with-border">
               <div className="img-responsive pad">
                 <img
-                  src={this.props.employee.imgs}
+                  src={this.props.employee.img}
                   alt="Photo"
                   className={styles.pics}
                 />
@@ -39,27 +55,31 @@ class Employees extends Component {
                 </blockquote>
               </h3>
               <hr />
-              
+
               <h4>
                 <i className="fa fa-sign-in margin-r-5" /> Time In
               </h4>
 
               <h3 className="text-black">
                 <blockquote>
-                  <strong>{this.props.employee.department}</strong>
+                  <strong>
+                    {this.ConvertDAte(this.props.employee.time_in)}
+                  </strong>
                 </blockquote>
               </h3>
               <hr />
 
-              <h4>
+              {/* <h4>
                 <i className="fa fa-sign-out margin-r-5" /> Time Out
               </h4>
 
               <h3 className="text-black">
                 <blockquote>
-                  <strong>{this.props.employee.department}</strong>
+                  <strong>
+                    {this.ConvertDAte(this.props.employee.time_out)}
+                  </strong>
                 </blockquote>
-              </h3>
+              </h3> */}
             </div>
           </div>
         )}

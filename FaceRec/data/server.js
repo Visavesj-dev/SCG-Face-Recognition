@@ -7,6 +7,7 @@ app.use(cors())
 app.get('/', function (req, res) {
    
     var sql = require("mssql");
+    const date = Date.now();
 
     // config for your database
     var config = {
@@ -26,7 +27,11 @@ app.get('/', function (req, res) {
         var request = new sql.Request();
            
         // query to the database and get the records
-        request.query('select * from People', function (err, recordset) {
+        request.query(`SELECT People.*, Worktime.*
+        FROM     People INNER JOIN
+        Worktime ON People.ID = Worktime.ID order by time_out asc
+        
+         `, function (err, recordset) {
             
             if (err) console.log(err)
 
@@ -77,3 +82,6 @@ app.get('/:id', function (req, res) {
 var server = app.listen(3030, function () {
     console.log('Server is running..');
 });
+
+
+

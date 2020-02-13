@@ -10,6 +10,7 @@ class Employeelist extends Component {
         this.props.employees.recordsets.map(employee => {
           return employee.slice(employee.length - 1).map(employees => {
             //Show the last data
+            
             return <Employees key={employees.id} employee={employees} />;
           });
         })
@@ -24,7 +25,7 @@ class Employeelist extends Component {
         this.props.employeeCCTV.recordsets.map(employee => {
           return employee
             .reverse()
-            .slice(1, 10)
+            .slice(0, 10)
             .map(employees => {
               //Show the last data
               return <Employees key={employees.id} employeeCCTV={employees} />;

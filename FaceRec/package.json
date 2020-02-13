@@ -21,7 +21,9 @@
     "react-webcam": "^4.1.1",
     "redux": "^4.0.5",
     "redux-form": "^8.3.0",
-    "redux-thunk": "^2.3.0"
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "url-join": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -5,12 +5,14 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 //import redux
-import { Provider } from "react-redux";
+import { Provider } from "react-redux"; // OHC อยากให้ทุก components เข้าถึง redux ได้
 import { createStore , applyMiddleware } from "redux";
-import reduxThunk from "redux-thunk"; //return เป็น function ได้
+import reduxThunk from "redux-thunk"; //return เป็น function ได้ asynconouse ในการ update state
 import reducers from "./reducers";
+import logger from "redux-logger"
 
-const store = createStore(reducers, {} , applyMiddleware(reduxThunk));
+
+const store = createStore(reducers, {} , applyMiddleware(reduxThunk,logger));  //สร้าง store 
 
 // bootstrap
 // import 'bootstrap/dist/css/bootstrap.min.css';
