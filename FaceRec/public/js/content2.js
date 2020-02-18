@@ -1,20 +1,15 @@
-
-
 $(document).ready(function() {
    
     $('#example2').DataTable({
-      'paging'      : true,
-      "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+      'paging'      : false,
       'lengthChange': true,
-      'searching'   : true,
+      'searching'   : false,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : true,
-      destroy: true,
+      
       
     })
+    
   })
-
-
-
 

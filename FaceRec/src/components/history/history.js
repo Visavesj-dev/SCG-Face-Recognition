@@ -1,42 +1,60 @@
 import React, { Component } from "react";
 import styles from "./history.module.css";
+import { Calendar } from "react-date-range";
 
 import { withRouter } from "react-router-dom";
 
 //redux
 import { connect } from "react-redux";
-import { EmployeesFetch } from "../../actions";
+import { HistoryFetch, EmployeesFetch } from "../../actions";
 
 class History extends Component {
   _isMounted = false;
-
   constructor(props) {
     super(props);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   componentDidMount() {
     //Change here
     this._isMounted = true;
 
-    
-
+    // this.lookupInterval = setInterval(() => {
     if (this._isMounted) {
-      
-      
-      this.props.EmployeesFetch();
+      this.props.HistoryFetch(this.props.match.params.date);
     }
+    // }, 500);
   }
 
   componentWillUnmount() {
     this._isMounted = false;
-
-   
+    clearInterval(this.lookupInterval);
   }
 
   viewProfile(history) {
-    this.props.history.push("history/profile/" + history.id[0]);
+    this.props.history.push("/history/profile/" + history.id[0]);
   }
 
+  handleSelect(date) {
+   
+    var date = new Date(date);
+    var yyyy = date.getFullYear();
+    var mm = date.getMonth() + 1;
+    var dd = date.getDate();
+
+    if (dd < 10) {
+      dd = "0" + dd;
+    }
+    if (mm < 10) {
+      mm = "0" + mm;
+    }
+    date = yyyy + "-" + mm + "-" + dd;
+    console.log(date);
+
+    this.props.history.replace("/history/" + date);
+
+    this.props.appReducer.app.forceUpdate()
+  }
 
   ConvertDAte = times => {
     if (times != null) {
@@ -64,12 +82,8 @@ class History extends Component {
           return historys.map((historys, index) => {
             return (
               <tr key={index} onClick={() => this.viewProfile(historys)}>
-                <td>
-                  {this.ConvertDAte(historys.time_in)} 
-                </td>
-                <td>
-                  {this.ConvertDAte(historys.time_out)}
-                </td>
+                <td>{this.ConvertDAte(historys.time_in)}</td>
+                <td>{this.ConvertDAte(historys.time_out)}</td>
                 <td>
                   {historys.first_name} {historys.last_name}
                 </td>
@@ -91,18 +105,51 @@ class History extends Component {
         <div className={styles.bg}>
           {/* Content Header (Page header) */}
           <section className="content-header">
-            <h1>History Tables</h1>
-            <ol className="breadcrumb">
-              <li>
-                <a href="#">
-                  <i className="fa fa-dashboard" /> Home
-                </a>
-              </li>
-              <li>
-                <a href="#">Tables</a>
-              </li>
-              <li className="active">Data tables</li>
-            </ol>
+            <div>
+              <h1 style={{ float: "left", marginTop: -5 }}>History Tables</h1>
+
+              {/*  */}
+
+              <button
+                type="button"
+                className="btn btn-info btn-lg"
+                data-toggle="modal"
+                data-target="#myModal"
+                style={{ float: "right", marginTop: -5, marginBottom: 10 }}
+              >
+                Open Modal
+              </button>
+              <div className="modal fade" id="myModal" role="dialog">
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <button
+                        type="button"
+                        className="close"
+                        data-dismiss="modal"
+                      >
+                        ×
+                      </button>
+                      <h4 className="modal-title">Select Date</h4>
+                    </div>
+                    <div className="modal-body">
+                      <center data-dismiss="modal">
+                        <Calendar onChange={this.handleSelect} />
+                      </center>
+                    </div>
+                    <div className="modal-footer">
+                      <button
+                        type="button"
+                        className="btn btn-default"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
           {/* Main content */}
           <section className="content">
@@ -146,11 +193,9 @@ class History extends Component {
 // }
 
 //Destructuring form
-const mapStateToProps = ({employees}) => ({ employees })
+const mapStateToProps = ({ employees, appReducer }) => ({
+  employees,
+  appReducer
+});
 
-
-
-export default connect(mapStateToProps, { EmployeesFetch })(
-  withRouter(History)
-);
-
+export default connect(mapStateToProps, { HistoryFetch })(withRouter(History));

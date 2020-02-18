@@ -10,7 +10,7 @@ class Employeelist extends Component {
         this.props.employees.recordsets.map(employee => {
           return employee.slice(employee.length - 1).map(employees => {
             //Show the last data
-            
+
             return <Employees key={employees.id} employee={employees} />;
           });
         })
@@ -38,7 +38,7 @@ class Employeelist extends Component {
   render() {
     const overflow = {
       width: "auto",
-      height: 596,
+      height: "79vh",
       overflowY: "scroll"
     };
     return (
@@ -50,7 +50,7 @@ class Employeelist extends Component {
               <div className="box-header with-border">
                 <h3 className="box-title">Recently Employee</h3>
               </div>
-              <div style={{ minHeight: "100%" }}>{this.showEmployee()}</div>
+              <div style={{ height: "81.6vh" }}>{this.showEmployee()}</div>
               {/* /.box-footer */}
             </div>
           </div>

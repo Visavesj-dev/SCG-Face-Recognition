@@ -1,3 +1,5 @@
+// Force Update
+export const APP_INIT = "APP_INIT";
 // Error Code
 export const E_PICKER_CANCELLED = 'E_PICKER_CANCELLED'
 export const E_PICKER_CANNOT_RUN_CAMERA_ON_SIMULATOR = 'E_PICKER_CANNOT_RUN_CAMERA_ON_SIMULATOR'
@@ -25,5 +27,6 @@ export const NOK = 'nok'
 export const server = {     
     LOGIN_PASSED : `yes`,
     EMPLOYEES_URL : `/`,
+    EMPLOYEES_id_URL: `/employees/`,
 }
 

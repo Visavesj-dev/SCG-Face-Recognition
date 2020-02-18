@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styles from "./employees.module.css";
 import { withRouter } from "react-router-dom";
+import "./employees.module.css";
 
 class Employees extends Component {
   viewProfile(employ) {
@@ -37,10 +38,7 @@ class Employees extends Component {
                   className={styles.pics}
                 />
               </div>
-              <h1
-                className="product-title text-center"
-                style={{ fontSize: 40, marginLeft: 5 }}
-              >
+              <h1 className="product-title text-center">
                 {this.props.employee.first_name} {this.props.employee.last_name}
               </h1>
             </div>
@@ -69,7 +67,7 @@ class Employees extends Component {
               </h3>
               <hr />
 
-              {/* <h4>
+              <h4>
                 <i className="fa fa-sign-out margin-r-5" /> Time Out
               </h4>
 
@@ -79,7 +77,7 @@ class Employees extends Component {
                     {this.ConvertDAte(this.props.employee.time_out)}
                   </strong>
                 </blockquote>
-              </h3> */}
+              </h3>
             </div>
           </div>
         )}
@@ -93,20 +91,27 @@ class Employees extends Component {
               <ul className="products-list product-list-in-box">
                 <li className="item ">
                   <div className="row">
-                    <div className="prodct-img col-xs-5 col-md-4 ">
+                    <div className="prodct-img col-xs-5 col-md-5 ">
                       <img
                         src={this.props.employeeCCTV.imgs}
                         alt="Photo"
                         className={styles.pics1}
                       />
                     </div>
-                    <div className="col-xs-7 col-md-7">
+                    <div className="col-xs-7 col-md-6">
                       <i className="fa fa-user margin-r-5" />
                       Name
                       <strong>
                         <h4 className="text-red">
                           {this.props.employeeCCTV.first_name}{" "}
                           {this.props.employeeCCTV.last_name}
+                        </h4>
+                      </strong>
+                      <i className="fa fa-building margin-r-5" />
+                      Department
+                      <strong>
+                        <h4 className="text-red">
+                          {this.props.employeeCCTV.department}
                         </h4>
                       </strong>
                       <i className="fa fa-building margin-r-5" />

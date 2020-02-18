@@ -37,43 +37,41 @@ class Body extends Component {
   render() {
     return (
       <div className="content-wrapper">
-        <div className={styles.bg}>
-          {/* Content Header (Page header) */}
-          {/* Main content */}
-          <section className="content">
-            {/* Main row */}
-            <div className="row" style={{ height: "auto" }}>
-              {/* Left col */}
-              <div className="col-md-7">
-                {/* MAP & BOX PANE */}
-                <div className="box box-primary">
-                  <div className="box-header with-border">
-                    <h3 className="box-title">Face Station Camera</h3>
-                  </div>
-                  {/* /.box-header */}
-                  <div className="box-body no-padding">
-                    <div className="row">
-                      <div className="col-md-12 ">
-                        <div className="pad">
-                          <h1 className="text-muted mt-4 text-right">
-                            {this.state.dates.toLocaleTimeString()}
-                          </h1>
-                          {/* <img src="http://192.168.137.1:8000/video_feed" style={{borderRadius: 30}}></img>  */}
-                          {/* Map will be created here */}
-                          <div id="world-map-markers" style={{ height: 100 }} />
-                        </div>
+        {/* Content Header (Page header) */}
+        {/* Main content */}
+        <section className="content">
+          {/* Main row */}
+          <div className="row">
+            {/* Left col */}
+            <div className="col-md-7">
+              {/* MAP & BOX PANE */}
+              <div className="box box-primary">
+                <div className="box-header with-border">
+                  <h3 className="box-title">Face Station Camera</h3>
+                </div>
+                {/* /.box-header */}
+                <div className="box-body no-padding">
+                  <div className="row">
+                    <div className="col-md-12 ">
+                      <div className="pad">
+                        <h1 className="text-muted mt-4 text-right">
+                          {this.state.dates.toLocaleTimeString()}
+                        </h1>
+                        {/* <img src="http://192.168.137.1:8000/video_feed" style={{borderRadius: 30}}></img>  */}
+                        {/* Map will be created here */}
+                        <div id="world-map-markers" />
                       </div>
                     </div>
-                    {/* /.row */}
                   </div>
-                  {/* /.box-body */}
+                  {/* /.row */}
                 </div>
+                {/* /.box-body */}
               </div>
-              {/* Employeelist */}
-              <Employeelist employees={this.props.employees} />
             </div>
-          </section>
-        </div>
+            {/* Employeelist */}
+            <Employeelist employees={this.props.employees} />
+          </div>
+        </section>
       </div>
     );
   }

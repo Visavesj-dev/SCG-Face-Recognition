@@ -24,7 +24,7 @@ class Header extends Component {
             data-toggle="push-menu"
             role="button"
           >
-            <span className="sr-only">Toggle navigation</span>
+            <span className="sr-only"  >Toggle navigation</span>
           </a>
           {/* Navbar Right Menu */}
           <div className="navbar-custom-menu">

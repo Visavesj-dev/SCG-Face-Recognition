@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styles from "./cctv.module.css";
 
-//import components 
+//import components
 import Employeelist from "../employeelist/employeelist";
 
 //redux
@@ -28,7 +28,7 @@ class Cctv extends Component {
   render() {
     return (
       <div className="content-wrapper">
-        <div className={styles.bg}>
+        <div>
           {/* Content Header (Page header) */}
           {/* Main content */}
           <section className="content">
@@ -42,7 +42,7 @@ class Cctv extends Component {
                     <h3 className="box-title">CCTV Station</h3>
                   </div>
                   {/* /.box-header */}
-                  <div className="box-body no-padding " style={{ height: 650 }}>
+                  <div className="box-body no-padding ">
                     <div className="row">
                       <div className="col-md-12 ">
                         <div className="pad">
@@ -51,7 +51,7 @@ class Cctv extends Component {
                           <div className="timeline-body">
                             <div
                               className="embed-responsive embed-responsive-16by9"
-                              style={{ height: 625 }}
+                              style={{ height: "81.6vh" }}
                             >
                               <iframe
                                 className="embed-responsive-item"
