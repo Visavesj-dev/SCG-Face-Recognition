@@ -1,12 +1,17 @@
 import axios from "axios";
 import { EMPLOYEES_FETCH, EMPLOYEE_FETCH } from "./types";
 
+
+
 //import HttpClient
 import { httpClient } from "../utils/HttpClient";
 import { server } from "../constants";
 
+const $ = require('datatables.net')
+$.DataTable= require('datatables.net')
+
 export const EmployeesFetch = () => {
-  return dispatch => {
+  return   dispatch => {
     httpClient.get(server.EMPLOYEES_URL).then(
       //มันทำเเบบ asynconous
       res => {
@@ -25,24 +30,26 @@ export const EmployeeFetch = id => {
 };
 
 export const HistoryFetch = date => {
-  return dispatch => {
+  return   dispatch => {
     if (date != null) {
       httpClient.get(server.EMPLOYEES_URL + date).then(res => {
+      
         const script = document.createElement("script");
 
-        script.src = "js/content.js";
+        script.src = "/js/content.js";
         script.async = true;
 
-        document.body.appendChild(script);
+       document.body.appendChild(script);
+        
         dispatch({ type: EMPLOYEE_FETCH, payload: res.data });
       });
     } else {
-      httpClient.get(server.EMPLOYEES_URL).then(
+       httpClient.get(server.EMPLOYEES_URL).then(
         //มันทำเเบบ asynconous
         res => {
           const script = document.createElement("script");
 
-          script.src = "js/content.js";
+          script.src = "/js/content.js";
           script.async = true;
 
           document.body.appendChild(script);
@@ -52,3 +59,7 @@ export const HistoryFetch = date => {
     }
   };
 };
+
+
+
+ 

@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { server } from "../../constants";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Header extends Component {
   render() {
@@ -24,7 +27,7 @@ class Header extends Component {
             data-toggle="push-menu"
             role="button"
           >
-            <span className="sr-only"  >Toggle navigation</span>
+            <span className="sr-only">Toggle navigation</span>
           </a>
           {/* Navbar Right Menu */}
           <div className="navbar-custom-menu">
@@ -74,7 +77,14 @@ class Header extends Component {
                         Profile
                       </a>
                     </div>
-                    <div className="pull-right">
+                    <div
+                      className="pull-right"
+                      onClick={() => {
+                        this.props.history.push("/login");
+                        localStorage.removeItem(server.LOGIN_PASSED);
+                        this.props.appReducer.app.forceUpdate();
+                      }}
+                    >
                       <a href="#" className="btn btn-default btn-flat">
                         Sign out
                       </a>
@@ -96,4 +106,10 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = ({ appReducer }) => ({
+  appReducer
+});
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));

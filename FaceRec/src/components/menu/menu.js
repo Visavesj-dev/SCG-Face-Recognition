@@ -31,6 +31,13 @@ class Menu extends Component {
               <i className="fa  fa-calendar-check-o"></i> <span>History</span>
             </Link>
           </li>
+
+          {/* sidebar items */}
+          {/* <li className="active">
+            <Link to="/finance">
+              <i className="fa  fa-money"></i> <span>​Finance</span>
+            </Link>
+          </li> */}
         </ul>
         {/* /.sidebar */}
       </aside>

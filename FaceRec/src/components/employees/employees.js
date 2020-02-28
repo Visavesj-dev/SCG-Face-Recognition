@@ -28,7 +28,7 @@ class Employees extends Component {
   render() {
     return (
       <div>
-        {this.props.employee && (
+        { this.props.employee && (
           <div>
             <div className="box-header with-border">
               <div className="img-responsive pad">

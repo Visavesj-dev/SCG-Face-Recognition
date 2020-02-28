@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import styles from "./body.module.css";
 
 //import component
 import Employeelist from "../employeelist/employeelist";

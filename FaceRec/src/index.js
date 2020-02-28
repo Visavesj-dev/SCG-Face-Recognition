@@ -4,6 +4,9 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+
 //import redux
 import { Provider } from "react-redux"; // OHC อยากให้ทุก components เข้าถึง redux ได้
 import { createStore , applyMiddleware } from "redux";

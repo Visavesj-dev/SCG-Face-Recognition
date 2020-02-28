@@ -1,17 +1,22 @@
 import React, { Component } from "react";
 import styles from "./history.module.css";
 import { Calendar } from "react-date-range";
+import "./history.module.css" ;
 
 import { withRouter } from "react-router-dom";
 
 //redux
 import { connect } from "react-redux";
-import { HistoryFetch, EmployeesFetch } from "../../actions";
+import { HistoryFetch } from "../../actions";
+
 
 class History extends Component {
   _isMounted = false;
   constructor(props) {
     super(props);
+    this.state = {
+      dates: ""
+    };
     this.handleSelect = this.handleSelect.bind(this);
   }
 
@@ -23,7 +28,7 @@ class History extends Component {
     if (this._isMounted) {
       this.props.HistoryFetch(this.props.match.params.date);
     }
-    // }, 500);
+    //  }, 500);
   }
 
   componentWillUnmount() {
@@ -36,7 +41,6 @@ class History extends Component {
   }
 
   handleSelect(date) {
-   
     var date = new Date(date);
     var yyyy = date.getFullYear();
     var mm = date.getMonth() + 1;
@@ -49,11 +53,9 @@ class History extends Component {
       mm = "0" + mm;
     }
     date = yyyy + "-" + mm + "-" + dd;
-    console.log(date);
 
-    this.props.history.replace("/history/" + date);
-
-    this.props.appReducer.app.forceUpdate()
+    this.props.history.push("/history/" + date);
+    
   }
 
   ConvertDAte = times => {
@@ -107,17 +109,15 @@ class History extends Component {
           <section className="content-header">
             <div>
               <h1 style={{ float: "left", marginTop: -5 }}>History Tables</h1>
-
               {/*  */}
-
               <button
                 type="button"
-                className="btn btn-info btn-lg"
+                className="btn btn-outline-primary btn-lg btn-block "
                 data-toggle="modal"
                 data-target="#myModal"
                 style={{ float: "right", marginTop: -5, marginBottom: 10 }}
               >
-                Open Modal
+                Search By Date ( เลือกวันที่ )
               </button>
               <div className="modal fade" id="myModal" role="dialog">
                 <div className="modal-dialog">
@@ -133,8 +133,11 @@ class History extends Component {
                       <h4 className="modal-title">Select Date</h4>
                     </div>
                     <div className="modal-body">
-                      <center data-dismiss="modal">
-                        <Calendar onChange={this.handleSelect} />
+                      <center>
+                        <Calendar
+                          date={new Date()}
+                          onChange={this.handleSelect}   
+                        />
                       </center>
                     </div>
                     <div className="modal-footer">
@@ -193,9 +196,9 @@ class History extends Component {
 // }
 
 //Destructuring form
-const mapStateToProps = ({ employees, appReducer }) => ({
+const mapStateToProps = ({ employees }) => ({
   employees,
-  appReducer
+
 });
 
-export default connect(mapStateToProps, { HistoryFetch })(withRouter(History));
+export default withRouter(connect(mapStateToProps, { HistoryFetch })(History));

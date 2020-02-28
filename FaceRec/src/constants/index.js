@@ -1,3 +1,7 @@
+// Login Page
+export const HTTP_LOGIN_FETCHING = "HTTP_LOGIN_FETCHING";
+export const HTTP_LOGIN_SUCCESS = "HTTP_LOGIN_SUCCESS";
+export const HTTP_LOGIN_FAILED = "HTTP_LOGIN_FAILED";
 // Force Update
 export const APP_INIT = "APP_INIT";
 // Error Code
@@ -28,5 +32,7 @@ export const server = {
     LOGIN_PASSED : `yes`,
     EMPLOYEES_URL : `/`,
     EMPLOYEES_id_URL: `/employees/`,
+    LOGIN_URL : `authen/login`,    
+
 }
 
