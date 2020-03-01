@@ -1,8 +1,17 @@
 
+.center {
+  text-align: center;
+  margin-top: 5px;
+  font-size: 40px;
+  color: red
 
+}
 
 @media screen and (max-width: 700px) {
   .row, .navbar {   
     flex-direction: column;
   }
 }
+
+
+

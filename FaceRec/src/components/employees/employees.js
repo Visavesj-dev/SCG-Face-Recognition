@@ -42,7 +42,7 @@ class Employees extends Component {
                 {this.props.employee.first_name} {this.props.employee.last_name}
               </h1>
             </div>
-            <div className="box-body">
+            {/* <div className="box-body">
               <h4>
                 <i className="fa fa-building margin-r-5" />
                 Department
@@ -78,7 +78,7 @@ class Employees extends Component {
                   </strong>
                 </blockquote>
               </h3>
-            </div>
+            </div> */}
           </div>
         )}
 

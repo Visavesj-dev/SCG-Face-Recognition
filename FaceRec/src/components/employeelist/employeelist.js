@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Employees from "../employees/employees";
 import { Link } from "react-router-dom";
 
+
 class Employeelist extends Component {
   showEmployee() {
     if (this.props.employees != null) {
@@ -10,7 +11,12 @@ class Employeelist extends Component {
         this.props.employees.recordsets.map(employee => {
           return employee.slice(employee.length - 1).map(employees => {
             //Show the last data
-            return <Employees key={employees.id} employee={employees} />;
+            if ( employees.status === 1){
+              return  <Employees key={employees.id} employee={employees} /> ;
+            }else if (employees.status === 0){
+              return  <Employees key={employees.id} employee={employees} />;
+            }
+           
           });
         })
       );
@@ -40,10 +46,12 @@ class Employeelist extends Component {
       height: "79vh",
       overflowY: "scroll"
     };
+   
     return (
-      <div>
+      <div> 
         {this.props.employees && (
           <div className="col-md-5">
+          
             {/* Employee LIST */}
             <div className="box box-primary">
               <div className="box-header with-border">
@@ -79,3 +87,6 @@ class Employeelist extends Component {
 }
 
 export default Employeelist;
+
+
+
